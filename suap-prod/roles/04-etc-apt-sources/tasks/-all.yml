@@ -1,0 +1,10 @@
+---
+- ansible.builtin.copy:
+    src: sources.txt
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: '0644'
+
+- ansible.builtin.apt:
+    update_cache: yes

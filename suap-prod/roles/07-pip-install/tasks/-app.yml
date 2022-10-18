@@ -1,0 +1,5 @@
+---
+- ansible.builtin.pip:
+    requirements: /var/opt/suap/requirements/production.txt
+    virtualenv: /var/opt/suap/.env
+    virtualenv_command: /usr/bin/python3 -m venv

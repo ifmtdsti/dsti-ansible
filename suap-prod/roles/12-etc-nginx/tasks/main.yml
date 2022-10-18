@@ -1,0 +1,6 @@
+---
+- include: -app.yml
+  when: ('suap_prod_app' in group_names)
+
+- include: -blc.yml
+  when: ('suap_prod_blc' in group_names)

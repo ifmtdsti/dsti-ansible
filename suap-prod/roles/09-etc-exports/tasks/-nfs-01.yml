@@ -1,0 +1,35 @@
+---
+- ansible.builtin.file:
+    path: /media/suap/deploy/media
+    owner: suap
+    group: suap
+    mode: '0775'
+    state: directory
+
+- ansible.builtin.file:
+    path: /media/suap/deploy/sessions
+    owner: suap
+    group: suap
+    mode: '0775'
+    state: directory
+
+- ansible.builtin.file:
+    path: /media/suap/logs
+    owner: suap
+    group: suap
+    mode: '0775'
+    state: directory
+
+- ansible.builtin.file:
+    path: /media/suap/static
+    owner: suap
+    group: suap
+    mode: '0775'
+    state: directory
+
+- ansible.builtin.file:
+    path: /media/suap/upload
+    owner: suap
+    group: suap
+    mode: '0775'
+    state: directory

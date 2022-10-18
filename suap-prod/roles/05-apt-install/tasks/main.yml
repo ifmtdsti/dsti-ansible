@@ -1,0 +1,14 @@
+---
+- include: -all.yml
+
+- include: -app.yml
+  when: ('suap_prod_app' in group_names) or ('suap_prod_blc' in group_names) or ('suap_prod_crn' in group_names)
+
+- include: -crn.yml
+  when: ('suap_prod_crn' in group_names)
+
+- include: -nfs.yml
+  when: ('suap_prod_nfs' in group_names)
+
+- include: -sql.yml
+  when: ('suap_prod_sql' in group_names)

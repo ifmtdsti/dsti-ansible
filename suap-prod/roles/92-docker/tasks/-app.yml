@@ -1,0 +1,37 @@
+---
+- ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/debian bullseye stable
+    filename: docker
+    state: present
+
+- ansible.builtin.apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - docker-ce
+    state: present
+    update_cache: true
+
+- ansible.builtin.user:
+    name: suap
+    append: yes
+    groups: docker
+  when: (_suap is defined)
+
+- ansible.builtin.user:
+    name: dsti
+    append: yes
+    groups: docker
+  when: (_test is undefined)
+
+- ansible.builtin.user:
+    name: vagrant
+    append: yes
+    groups: docker
+  when: (_test is defined)

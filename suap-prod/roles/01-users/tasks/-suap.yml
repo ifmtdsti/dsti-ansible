@@ -1,0 +1,19 @@
+---
+- ansible.builtin.group:
+    name: suap
+    gid: 900
+    state: present
+
+- ansible.builtin.user:
+    name: suap
+    uid: 900
+    group: suap
+    shell: /bin/bash
+    create_home: true
+    home: /home/suap
+    state: present
+
+- ansible.builtin.copy:
+    content: '%suap ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/suap
+    mode: 0440

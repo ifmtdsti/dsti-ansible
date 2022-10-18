@@ -1,0 +1,15 @@
+---
+- ansible.builtin.copy:
+    src: suap.conf
+    dest: /etc/supervisor/conf.d/suap.conf
+    mode: '0644'
+
+- ansible.builtin.copy:
+    src: suap.sh
+    dest: /var/opt/suap/bin/_suap.sh
+    mode: '0755'
+
+- ansible.builtin.service:
+    name: supervisor
+    state: restarted
+    enabled: yes

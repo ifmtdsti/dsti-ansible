@@ -1,0 +1,23 @@
+---
+- ansible.builtin.apt:
+    name: zabbix-agent
+    state: present
+
+- shell: hostname | tr 'A-Z' 'a-z'
+  register: hname
+
+- shell: hostname -I | cut -d' ' -f1
+  register: hip
+
+- ansible.builtin.copy:
+    src: zabbix_agentd.conf
+    dest: /etc/zabbix/
+
+- action: raw sed -i "s/Hostname=zabbix/Hostname="{{ hname.stdout }}"/g" /etc/zabbix/zabbix_agentd.conf
+
+- action: raw sed -i "s/ListenIP=0.0.0.0/ListenIP="{{ hip.stdout }}"/g" /etc/zabbix/zabbix_agentd.conf
+
+- ansible.builtin.service:
+    name: zabbix-agent
+    state: restarted
+    enabled: yes

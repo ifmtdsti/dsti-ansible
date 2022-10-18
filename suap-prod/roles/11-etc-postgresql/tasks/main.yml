@@ -1,0 +1,12 @@
+---
+- include: -sql-01.yml
+  when: ('suap_prod_sql' in group_names)
+
+- include: -sql-02.yml
+  when: ('suap_prod_sql' in group_names)
+
+- include: -sql-03.yml
+  when: ('suap_prod_sql' in group_names)
+
+- include: -sql-04.yml
+  when: ('suap_prod_sql' in group_names)

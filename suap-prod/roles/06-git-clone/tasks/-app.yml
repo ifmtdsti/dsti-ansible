@@ -1,0 +1,7 @@
+---
+- ansible.builtin.git:
+    repo: https://oauth2:secret@gitlab.ifmt.edu.br/csn/suap.git
+    dest: /var/opt/suap
+    version: master
+    clone: yes
+    update: no

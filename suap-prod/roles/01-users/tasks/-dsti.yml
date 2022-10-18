@@ -1,0 +1,19 @@
+---
+- ansible.builtin.group:
+    name: dsti
+    gid: 1000
+    state: present
+
+- ansible.builtin.user:
+    name: dsti
+    uid: 1000
+    group: dsti
+    shell: /bin/bash
+    create_home: true
+    home: /home/dsti
+    state: present
+
+- ansible.builtin.copy:
+    content: '%dsti ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/dsti
+    mode: 0440

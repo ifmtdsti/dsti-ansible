@@ -1,0 +1,20 @@
+---
+- ansible.builtin.copy:
+    src: suap.app.conf
+    dest: /etc/nginx/sites-available/suap.conf
+    mode: '0644'
+
+- shell: hostname -i | cut -d' ' -f1
+  register: hip
+
+- action: raw sed -i "s/192.168.56.31/{{ hip.stdout }}/g" /etc/nginx/sites-available/suap.conf
+
+- ansible.builtin.file:
+    src: /etc/nginx/sites-available/suap.conf
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+
+- ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: yes

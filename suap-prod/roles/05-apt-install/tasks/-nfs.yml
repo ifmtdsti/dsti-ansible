@@ -1,0 +1,6 @@
+---
+- ansible.builtin.apt:
+    name:
+      - nfs-kernel-server
+    state: present
+    update_cache: yes

@@ -1,0 +1,14 @@
+---
+- ansible.builtin.copy:
+    src: bashrc.txt
+    dest: /home/dsti/.bashrc
+    owner: dsti
+    group: dsti
+    mode: '0644'
+
+- ansible.builtin.copy:
+    src: profile.txt
+    dest: /home/dsti/.profile
+    owner: dsti
+    group: dsti
+    mode: '0644'

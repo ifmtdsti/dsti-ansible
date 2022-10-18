@@ -1,0 +1,19 @@
+---
+- hosts: suap_prod_*
+  become: yes
+  become_user: root
+  roles:
+    - 01-users
+    - 02-users-bashrc
+    - 03-users-ssh-key
+    - 04-etc-apt-sources
+    - 05-apt-install
+    - 06-git-clone
+    - 07-pip-install
+    - 08-etc-hosts
+    - 09-etc-exports
+    - 10-etc-fstab
+    - 11-etc-postgresql
+    - 12-etc-nginx
+    - 13-etc-supervisor
+    - 14-extras

@@ -1,0 +1,19 @@
+---
+- ansible.builtin.file:
+    path: /home/suap/.ssh
+    owner: suap
+    group: suap
+    mode: '0700'
+    state: directory
+
+- ansible.builtin.copy:
+    src: config.txt
+    dest: /home/suap/.ssh/config
+    owner: suap
+    group: suap
+    mode: '0600'
+
+- authorized_key:
+    user: suap
+    key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+    state: present

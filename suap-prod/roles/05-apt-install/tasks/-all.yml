@@ -1,0 +1,17 @@
+---
+- ansible.builtin.apt:
+    name:
+      - bash-completion
+      - curl
+      - gpg
+      - htop
+      - locales-all
+      - mc
+      - nfs-common
+      - ntpdate
+      - openssh-server
+      - rsync
+      - wget
+      - zabbix-agent
+    state: present
+    update_cache: yes

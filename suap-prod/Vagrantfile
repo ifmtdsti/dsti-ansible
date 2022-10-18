@@ -1,0 +1,171 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+	config.vm.box = "debian/bullseye64"
+
+	config.vm.define :nfs do |nfs|
+
+		nfs.vm.hostname = "suap-prod-nfs"
+		nfs.vm.network :private_network, ip: "192.168.56.11"
+
+		nfs.vm.provider :virtualbox do |v|
+			v.name = "suap-prod-nfs"
+			v.memory = 1024
+			v.cpus = 1
+		end
+
+		nfs.vm.provision :ansible do |a|
+			a.playbook = "suap-prod.yml"
+
+			a.groups = {
+				"suap_prod_nfs" => ["nfs"],
+				"suap_prod_nfs:vars" => {
+					"_suap" => 1,
+					"_test" => 1,
+				},
+			}
+
+			a.extra_vars = {
+				ansible_ssh_user: "vagrant",
+				ansible_python_interpreter: "/usr/bin/python3",
+			}
+		end
+
+		nfs.disksize.size = '50GB'
+
+	end
+
+	config.vm.define :sql do |sql|
+
+		sql.vm.hostname = "suap-prod-sql"
+		sql.vm.network :private_network, ip: "192.168.56.21"
+
+		sql.vm.provider :virtualbox do |v|
+			v.name = "suap-prod-sql"
+			v.memory = 1024
+			v.cpus = 1
+		end
+
+		sql.vm.provision :ansible do |a|
+			a.playbook = "suap-prod.yml"
+
+			a.groups = {
+				"suap_prod_sql" => ["sql"],
+				"suap_prod_sql:vars" => {
+					"_test" => 1,
+				},
+			}
+
+			a.extra_vars = {
+				ansible_ssh_user: "vagrant",
+				ansible_python_interpreter: "/usr/bin/python3",
+			}
+		end
+
+		# sql.disksize.size = '50GB'
+
+	end
+
+	config.vm.define :app do |app|
+
+		app.vm.hostname = "suap-prod-app"
+		app.vm.network :private_network, ip: "192.168.56.31"
+
+		app.vm.provider :virtualbox do |v|
+			v.name = "suap-prod-app"
+			v.memory = 1024
+			v.cpus = 1
+		end
+
+		app.vm.provision :ansible do |a|
+			a.playbook = "suap-prod.yml"
+
+			a.groups = {
+				"suap_prod_app" => ["app"],
+				"suap_prod_app:vars" => {
+					"_suap" => 1,
+					"_test" => 1,
+				},
+			}
+
+			a.extra_vars = {
+				ansible_ssh_user: "vagrant",
+				ansible_python_interpreter: "/usr/bin/python3",
+			}
+		end
+
+		# app.disksize.size = '50GB'
+
+	end
+
+	config.vm.define :crn do |crn|
+
+		crn.vm.hostname = "suap-prod-crn"
+		crn.vm.network :private_network, ip: "192.168.56.41"
+
+		crn.vm.provider :virtualbox do |v|
+			v.name = "suap-prod-crn"
+			v.memory = 1024
+			v.cpus = 1
+		end
+
+		crn.vm.provision :ansible do |a|
+			a.playbook = "suap-prod.yml"
+
+			a.groups = {
+				"suap_prod_crn" => ["crn"],
+				"suap_prod_crn:vars" => {
+					"_suap" => 1,
+					"_test" => 1,
+				},
+			}
+
+			a.extra_vars = {
+				ansible_ssh_user: "vagrant",
+				ansible_python_interpreter: "/usr/bin/python3",
+			}
+		end
+
+		# crn.disksize.size = '50GB'
+
+		crn.vm.provision "file", source: "./scripts", destination: "~/scripts"
+
+	end
+
+	config.vm.define :blc do |blc|
+
+		blc.vm.hostname = "suap-prod-blc"
+		blc.vm.network :private_network, ip: "192.168.56.51"
+
+		blc.vm.network "forwarded_port", guest: 80, host: 4080
+
+		blc.vm.provider :virtualbox do |v|
+			v.name = "suap-prod-blc"
+			v.memory = 1024
+			v.cpus = 1
+		end
+
+		blc.vm.provision :ansible do |a|
+			a.playbook = "suap-prod.yml"
+
+			a.groups = {
+				"suap_prod_blc" => ["blc"],
+				"suap_prod_blc:vars" => {
+					"_suap" => 1,
+					"_test" => 1,
+				},
+			}
+
+			a.extra_vars = {
+				ansible_ssh_user: "vagrant",
+				ansible_python_interpreter: "/usr/bin/python3",
+			}
+		end
+
+		# blc.disksize.size = '50GB'
+
+	end
+
+end

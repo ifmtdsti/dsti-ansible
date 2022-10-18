@@ -1,0 +1,5 @@
+---
+- include: -suap.yml
+
+- include: -dsti.yml
+  when: (_test is undefined)

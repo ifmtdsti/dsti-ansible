@@ -1,0 +1,22 @@
+#
+
+::1		localhost ip6-localhost ip6-loopback
+
+ff02::1		ip6-allnodes
+ff02::2		ip6-allrouters
+
+#
+
+127.0.0.1	localhost
+
+#
+
+10.0.206.21	gitlab gitlab.ifmt.edu.br
+
+#
+
+192.168.56.11	suap-prod-nfs suap-prod-nfs.ifmtdc.local
+192.168.56.21	suap-prod-sql suap-prod-sql.ifmtdc.local
+192.168.56.31	suap-prod-app suap-prod-app.ifmtdc.local
+192.168.56.41	suap-prod-crn suap-prod-crn.ifmtdc.local
+192.168.56.51	suap-prod-blc suap-prod-blc.ifmtdc.local

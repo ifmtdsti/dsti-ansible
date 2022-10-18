@@ -1,0 +1,19 @@
+---
+- ansible.builtin.file:
+    path: /root/.ssh
+    owner: root
+    group: root
+    mode: '0700'
+    state: directory
+
+- ansible.builtin.copy:
+    src: config.txt
+    dest: /root/.ssh/config
+    owner: root
+    group: root
+    mode: '0600'
+
+- authorized_key:
+    user: root
+    key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+    state: present

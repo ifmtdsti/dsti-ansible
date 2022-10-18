@@ -1,0 +1,17 @@
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[suap_prod_app]
+
+[suap_prod_blc]
+
+[suap_prod_crn]
+
+[suap_prod_app:vars]
+_suap=1
+
+[suap_prod_blc:vars]
+_suap=1
+
+[suap_prod_crn:vars]
+_suap=1

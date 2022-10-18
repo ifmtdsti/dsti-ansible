@@ -1,0 +1,9 @@
+---
+- postgresql_user:
+    user: suap_dev
+    password: suap_dev
+
+- postgresql_db:
+    name: suap_dev
+    owner: suap_dev
+    encoding: UTF-8

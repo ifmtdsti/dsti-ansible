@@ -1,0 +1,2 @@
+#
+/media/suap 10.0.202.0/24(rw,sync,no_subtree_check,anonuid=900,anongid=900)

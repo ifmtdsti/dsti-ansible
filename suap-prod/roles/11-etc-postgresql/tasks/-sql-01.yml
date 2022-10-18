@@ -1,0 +1,6 @@
+---
+- ansible.builtin.lineinfile:
+    dest: /etc/postgresql/13/main/postgresql.conf
+    regexp: "listen_addresses ="
+    line: "listen_addresses = '*'"
+    state: present

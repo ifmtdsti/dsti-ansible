@@ -1,0 +1,63 @@
+---
+- ansible.builtin.file:
+    path: /etc/postgresql/13/main/pg_hba.conf
+    state: absent
+
+- ansible.builtin.file:
+    path: /etc/postgresql/13/main/pg_hba.conf
+    state: touch
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: local
+    databases: all
+    users: postgres
+    method: trust
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 127.0.0.1/32
+    method: md5
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 192.168.56.11/32
+    method: md5
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 192.168.56.21/32
+    method: md5
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 192.168.56.31/32
+    method: md5
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 192.168.56.41/32
+    method: md5
+
+- ansible.builtin.postgresql_pg_hba:
+    dest: /etc/postgresql/13/main/pg_hba.conf
+    contype: host
+    databases: all
+    users: all
+    address: 192.168.56.51/32
+    method: md5

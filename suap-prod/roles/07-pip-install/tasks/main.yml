@@ -1,0 +1,3 @@
+---
+- include: -app.yml
+  when: ('suap_prod_app' in group_names) or ('suap_prod_blc' in group_names) or ('suap_prod_crn' in group_names)

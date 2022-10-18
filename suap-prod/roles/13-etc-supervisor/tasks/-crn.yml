@@ -1,0 +1,35 @@
+---
+- ansible.builtin.copy:
+    src: celery-beat.conf
+    dest: /etc/supervisor/conf.d/celery-beat.conf
+    mode: '0755'
+
+- ansible.builtin.copy:
+    src: celery-flower.conf
+    dest: /etc/supervisor/conf.d/celery-flower.conf
+    mode: '0755'
+
+- ansible.builtin.copy:
+    src: celery-worker.conf
+    dest: /etc/supervisor/conf.d/celery-worker.conf
+    mode: '0755'
+
+- ansible.builtin.copy:
+    src: celery-beat.sh
+    dest: /var/opt/suap/bin/_celery-beat.sh
+    mode: '0755'
+
+- ansible.builtin.copy:
+    src: celery-flower.sh
+    dest: /var/opt/suap/bin/_celery-flower.sh
+    mode: '0755'
+
+- ansible.builtin.copy:
+    src: celery-worker.sh
+    dest: /var/opt/suap/bin/_celery-worker.sh
+    mode: '0755'
+
+- ansible.builtin.service:
+    name: supervisor
+    state: restarted
+    enabled: yes

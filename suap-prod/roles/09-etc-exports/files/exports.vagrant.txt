@@ -1,0 +1,2 @@
+#
+/media/suap 192.168.56.0/24(rw,sync,no_subtree_check,anonuid=900,anongid=900)
